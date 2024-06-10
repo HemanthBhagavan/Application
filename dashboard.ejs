@@ -1,0 +1,116 @@
+<!-- views/dashboard.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1bdcc9;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+  
+  .movie-details {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .movie-details h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .movie-details img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #595252;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #ff6347; /* Tomato color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #ff3e03; /* Darker shade of Tomato */
+    
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Dashboard</h1>
+    <h4>searching movie details</h4>
+  </header>
+  
+  <main>
+    <% if (movie) { %>
+      <div class="movie-details">
+        <h2><%= movie.Title %> (<%= movie.Year %>)</h2>
+        <p><strong>Genre:</strong> <%= movie.Genre %></p>
+        <p><strong>Director:</strong> <%= movie.Director %></p>
+        <p><strong>Actors:</strong> <%= movie.Actors %></p>
+        <p><strong>Plot:</strong> <%= movie.Plot %></p>
+        <p><strong>IMDB Rating:</strong> <%= movie.imdbRating %></p>
+        <p><strong>Runtime:</strong> <%= movie.Runtime %></p>
+        <p><strong>Language:</strong> <%= movie.Language %></p>
+        <p><strong>Country:</strong> <%= movie.Country %></p>
+        <p><strong>Awards:</strong> <%= movie.Awards %></p>
+        <img src="<%= movie.Poster %>" alt="<%= movie.Title %> Poster">
+      </div>
+    <% } else { %>
+      <p>No movie details available.</p>
+    <% } %>
+    
+    <form action="/dashboard" method="post">
+      <label for="title">Search Movie:</label>
+      <input type="text" id="title" name="title" required>
+      <button type="submit">Search</button>
+    </form>
+  </main>
+</body>
+</html>
